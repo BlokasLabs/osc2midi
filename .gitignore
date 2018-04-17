@@ -1,0 +1,48 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+osc2midi
+
+# Debug files
+*.dSYM/
+*.su
+
+# Misc files
+*.cmd
+*.tmp
+*.mod.c
+*.symvers
+*.order
+*.dtbo
+.tmp_versions
+
+**/__pycache__/*
+**/.vscode/*
+**/.DS_STORE/*
