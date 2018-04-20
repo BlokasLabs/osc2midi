@@ -178,11 +178,11 @@ static int sendHello(int socket, const sockaddr_in &addr, const char *name)
 
 	memcpy(buffer, MSG_HELLO, sizeof(MSG_HELLO));
 	*((uint32_t*)(buffer + sizeof(MSG_HELLO))) = htonl((uint32_t)ntohs(myAddr.sin_port));
-	size_t n = strlen(name);
-	if (n+1 > (sizeof(buffer) - sizeof(MSG_HELLO) + sizeof(uint32_t)))
+	size_t n = strlen(name) + 1;
+	if (n > (sizeof(buffer) - sizeof(MSG_HELLO) + sizeof(uint32_t)))
 		return -EMSGSIZE;
 
-	char *p = strncpy((buffer + sizeof(MSG_HELLO) + sizeof(uint32_t)), name, n) + n;
+	char *p = n + strncpy((buffer + sizeof(MSG_HELLO) + sizeof(uint32_t)), name, n);
 
 	while ((intptr_t)p & 0x3)
 		*p++ = '\0';
@@ -490,7 +490,7 @@ int main(int argc, char **argv)
 		return EINVAL;
 	}
 
-	int result = run(argv[1], argv[2], 8000);
+	int result = run(argv[1], argv[2], port);
 
 	if (result < 0)
 		fprintf(stderr, "Error %d!\n", result);
