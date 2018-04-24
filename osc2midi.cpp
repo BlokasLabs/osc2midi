@@ -112,7 +112,7 @@ static int seqInit(const char *portName)
 		goto error;
 	}
 
-	result = snd_seq_set_client_name(g_seq, "osc2midi");
+	result = snd_seq_set_client_name(g_seq, portName);
 	if (result < 0)
 	{
 		fprintf(stderr, "Failed setting client name! (%d)\n", result);
