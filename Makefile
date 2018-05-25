@@ -44,7 +44,7 @@ clean:
 osc2midi.deb: osc2midi
 	@gzip --best -n ./debian/usr/share/doc/osc2midi/changelog ./debian/usr/share/doc/osc2midi/changelog.Debian ./debian/usr/share/man/man1/osc2midi.1
 	@mkdir -p debian/usr/bin
-	@cp osc2midi debian/usr/bin/
+	@cp -p osc2midi debian/usr/bin/
 	@fakeroot dpkg --build debian
 	@mv debian.deb osc2midi.deb
 	@gunzip `find . | grep gz` > /dev/null 2>&1
