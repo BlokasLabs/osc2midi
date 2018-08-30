@@ -32,7 +32,7 @@
 #include "midi_serialization.h"
 
 #define HOMEPAGE_URL "https://blokas.io/"
-#define OSC2MIDI_VERSION 0x0100
+#define OSC2MIDI_VERSION 0x0101
 
 // Sent to the provided host in the command line arguments.
 // The first argument is the port number, the 2nd is the given port name
