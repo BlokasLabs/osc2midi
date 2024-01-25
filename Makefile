@@ -16,14 +16,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-BINARY_DIR ?= /usr/local/bin
+PREFIX ?= /usr/local
+DESTDIR ?=
+BINARY_DIR ?= $(DESTDIR)$(PREFIX)/bin
 
 all: osc2midi
 
 CXXFLAGS ?= -O3
 LDFLAGS ?= -lasound
-
-CXX=g++-4.9
 
 osc2midi: osc2midi.o midi_serialization.o
 	$(CXX) $^ -o $@ -lasound
@@ -33,18 +33,8 @@ osc2midi: osc2midi.o midi_serialization.o
 	$(CXX) -c $(CXXFLAGS) $^ -o $@
 
 install: all
+	mkdir -p $(BINARY_DIR)
 	@cp -p osc2midi $(BINARY_DIR)/
 
 clean:
 	rm -f osc2midi *.o
-	rm -f osc2midi.deb
-	rm -f debian/usr/bin/osc2midi
-	gunzip `find . | grep gz` > /dev/null 2>&1 || true
-
-osc2midi.deb: osc2midi
-	@gzip --best -n ./debian/usr/share/doc/osc2midi/changelog ./debian/usr/share/doc/osc2midi/changelog.Debian ./debian/usr/share/man/man1/osc2midi.1
-	@mkdir -p debian/usr/bin
-	@cp -p osc2midi debian/usr/bin/
-	@fakeroot dpkg --build debian
-	@mv debian.deb osc2midi.deb
-	@gunzip `find . | grep gz` > /dev/null 2>&1

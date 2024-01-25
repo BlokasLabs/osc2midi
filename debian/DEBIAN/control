@@ -1,9 +1,0 @@
-Package: osc2midi
-Version: 1.01-1
-Section: sound
-Priority: optional
-Architecture: armhf
-Depends: libc6 (>= 2.19), libgcc1 (>= 1:4.9.2-10), libasound2 (>= 1.1)
-Maintainer: Blokas Labs <hello@blokas.io>
-Description: A bridge between OSC and (ALSA) MIDI.
- See https://github.com/BlokasLabs/osc2midi/ for more information.
